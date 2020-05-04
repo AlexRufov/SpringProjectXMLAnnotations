@@ -29,6 +29,13 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
+    public void doMyInit(){
+        System.out.println("Start playing");
+    }
+    public void doMyDestroy(){
+        System.out.println("End playing");
+    }
+
     public void playMusicList(){
         for (Music music: musicList) {
             System.out.println("Playing: " + music.getSong());
