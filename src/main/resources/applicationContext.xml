@@ -22,7 +22,8 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="ru.alexrufov.SpringProject.MusicPlayer">
+          class="ru.alexrufov.SpringProject.MusicPlayer"
+                                        scope="prototype">
             <property name="musicList">
                 <list>
                     <ref bean="musicBean1"/>
