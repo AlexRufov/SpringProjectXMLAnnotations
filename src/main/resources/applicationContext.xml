@@ -10,5 +10,9 @@
     <bean id="musicBean"
           class="ru.alexrufov.SpringProject.RockMusic">
     </bean>
+    <bean id="musicPlayer"
+          class="ru.alexrufov.SpringProject.MusicPlayer">
+            <constructor-arg ref="musicBean"/>
+    </bean>
 
 </beans>
