@@ -9,37 +9,7 @@
 
     <context:property-placeholder location="musicPlayer.properties"/>
 
-    <bean id="musicBean1"
-          class="ru.alexrufov.SpringProject.RockMusic"
-          factory-method="getRockMusic">
-    </bean>
+    <context:component-scan base-package="ru.alexrufov.SpringProject"/>
 
-    <bean id="musicBean2"
-          class="ru.alexrufov.SpringProject.ClassicalMusic"
-          factory-method="getClassicalMusic">
-    </bean>
-
-    <bean id="musicBean3"
-          class="ru.alexrufov.SpringProject.RapMusic"
-          factory-method="getRapMusic">
-    </bean>
-
-    <bean id="musicPlayer"
-          class="ru.alexrufov.SpringProject.MusicPlayer"
-          scope="singleton"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-            <property name="musicList">
-                <list>
-                    <ref bean="musicBean1"/>
-                    <ref bean="musicBean2"/>
-                    <ref bean="musicBean3"/>
-                </list>
-            </property>
-
-
-        <property name="playerName" value="${musicPlayer.playerName}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
 
 </beans>
