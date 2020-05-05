@@ -1,44 +1,50 @@
 package ru.alexrufov.SpringProject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    private String playerName;
+    @Value("${musicPlayer.playerName}")
+    private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public String getName() {
+        return name;
     }
 
     public int getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    private Music music1;
+    private Music music2;
+
+    @Autowired
+    public MusicPlayer(@Qualifier("classicalMusic") Music music1, @Qualifier("rockMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
     }
 
+    @PostConstruct
     public void doMyInit(){
         System.out.println("Start playing");
     }
+    @PreDestroy
     public void doMyDestroy(){
         System.out.println("End playing");
     }
 
-    public void playMusicList(){
-        for (Music music: musicList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+    public String playMusic(){
+        return "Playing: " + music1.getSong() + " >> " + music2.getSong();
     }
 }

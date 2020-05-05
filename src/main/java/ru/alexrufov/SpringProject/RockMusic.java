@@ -1,5 +1,10 @@
 package ru.alexrufov.SpringProject;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("singleton")
 public class RockMusic implements Music {
     private RockMusic(){}
 
